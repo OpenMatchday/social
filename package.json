@@ -1,0 +1,10 @@
+{
+  "name": "open-matchday-social",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Social content preparation, export, and official-API publishing adapters",
+  "scripts": {
+    "check": "node scripts/check-providers.mjs"
+  }
+}

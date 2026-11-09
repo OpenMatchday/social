@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "spike": "OM-009",
+  "decision": "D8",
+  "updated": "2026-11-09",
+  "rule": "Publishing adapters may run only when verification=policy_verified AND runtime_enabled=true. This spike keeps every runtime_enabled=false.",
+  "providers": [
+    {
+      "id": "youtube",
+      "display_name": "YouTube",
+      "verification": "policy_verified",
+      "runtime_enabled": false,
+      "use_cases": ["video_upload"],
+      "official_api": "YouTube Data API v3 videos.insert",
+      "policy_urls": [
+        "https://developers.google.com/youtube/terms/developer-policies",
+        "https://developers.google.com/youtube/v3/guides/uploading_a_video",
+        "https://developers.google.com/youtube/v3/docs/videos/insert",
+        "https://developers.google.com/youtube/v3/getting-started",
+        "https://developers.google.com/youtube/v3/determine_quota_cost"
+      ],
+      "oauth_scopes_least_privilege": [
+        "https://www.googleapis.com/auth/youtube.upload"
+      ],
+      "rate_or_quota": "Default project quota: 100 videos.insert/day (own bucket, 1 unit/call), 100 search.list/day, 10000 units/day for other endpoints; resets midnight PT. Subject to change per Google docs.",
+      "app_type_notes": "Installed/mobile OAuth documented. Public apps using sensitive scopes require Google verification. No live publish exercised this spike.",
+      "blockers_to_enable": [
+        "Google Cloud project + OAuth client",
+        "OM-035 adapter + encrypted token store",
+        "AC-11.6 approval UI"
+      ]
+    },
+    {
+      "id": "meta_instagram",
+      "display_name": "Instagram (professional)",
+      "verification": "policy_verified",
+      "runtime_enabled": false,
+      "use_cases": ["image_post", "video_post", "reels", "carousel"],
+      "official_api": "Instagram Content Publishing API",
+      "policy_urls": [
+        "https://developers.facebook.com/docs/instagram-platform/content-publishing/",
+        "https://developers.facebook.com/devpolicy",
+        "https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-instagram-login/business-login",
+        "https://developers.facebook.com/blog/post/2025/07/08/partnership-ads-api-new-features/"
+      ],
+      "oauth_scopes_least_privilege": [
+        "instagram_business_content_publish",
+        "instagram_business_basic"
+      ],
+      "rate_or_quota": "Meta documents Content Publishing rate expansion enabling up to 100 posts per day across feed, Stories, and Reels via API (2025-07-08 developer blog citing publishing docs). Confirm live limit in Content Publishing docs at enablement time.",
+      "app_type_notes": "Professional (Business/Creator) accounts. Meta docs require media hosted on a publicly accessible server at publish time (conflicts with offline-only local media unless a temporary upload path is added). Advanced Access may be required when publishing for accounts the app does not own.",
+      "blockers_to_enable": [
+        "Meta app review / Advanced Access as required",
+        "Public media host or approved upload path",
+        "OM-035 adapter + encrypted token store",
+        "AC-11.6 approval UI"
+      ]
+    },
+    {
+      "id": "meta_facebook_pages",
+      "display_name": "Facebook Pages",
+      "verification": "policy_verified",
+      "runtime_enabled": false,
+      "use_cases": ["page_photo", "page_video"],
+      "official_api": "Graph API Page photos/videos + Video API publishing",
+      "policy_urls": [
+        "https://developers.facebook.com/docs/video-api/guides/publishing/",
+        "https://developers.facebook.com/docs/graph-api/reference/page/photos/",
+        "https://developers.facebook.com/docs/graph-api/reference/page/videos/",
+        "https://developers.facebook.com/docs/pages-api/manage-pages/",
+        "https://developers.facebook.com/devpolicy"
+      ],
+      "oauth_scopes_least_privilege": [
+        "pages_show_list",
+        "pages_read_engagement",
+        "pages_manage_posts"
+      ],
+      "rate_or_quota": "Platform and Page rate limits apply per Meta Graph API; exact Page publish quotas not fixed as a single constant in the cited publishing guide. Measure under a real app token before enablement.",
+      "app_type_notes": "Page access token from a person with CREATE_CONTENT task. publish_video may be required for some video flows per Pages manage docs.",
+      "blockers_to_enable": [
+        "Meta app + Page permissions review",
+        "OM-035 adapter + encrypted token store",
+        "AC-11.6 approval UI"
+      ]
+    },
+    {
+      "id": "tiktok",
+      "display_name": "TikTok",
+      "verification": "policy_verified",
+      "runtime_enabled": false,
+      "use_cases": ["video_direct_post", "photo_direct_post", "draft_upload"],
+      "official_api": "TikTok Content Posting API",
+      "policy_urls": [
+        "https://developers.tiktok.com/doc/content-posting-api-get-started",
+        "https://developers.tiktok.com/doc/tiktok-api-scopes",
+        "https://developers.tiktok.com/doc/scopes-overview",
+        "https://developers.tiktok.com/"
+      ],
+      "oauth_scopes_least_privilege": [
+        "video.publish",
+        "video.upload"
+      ],
+      "rate_or_quota": "Creator max_video_post_duration_sec returned by creator_info/query (example 300 in docs). Product/app-level posting quotas are governed by TikTok for Developers app configuration and audit; not a single public daily number in the Get Started page.",
+      "app_type_notes": "App must add Content Posting API, enable Direct Post, and obtain video.publish approval. Unaudited clients: posts restricted to private viewing until audit per Get Started note.",
+      "blockers_to_enable": [
+        "TikTok developer app + scope approval + audit",
+        "OM-035 adapter + encrypted token store",
+        "AC-11.6 approval UI"
+      ]
+    },
+    {
+      "id": "x",
+      "display_name": "X",
+      "verification": "policy_verified",
+      "runtime_enabled": false,
+      "use_cases": ["text_post", "image_post", "video_post"],
+      "official_api": "X API v2 POST /2/tweets + media upload",
+      "policy_urls": [
+        "https://developer.x.com/en/developer-terms/agreement",
+        "https://developer.x.com/en/developer-terms/policy",
+        "https://docs.x.com/x-api/posts/create-post",
+        "https://docs.x.com/resources/fundamentals/authentication/oauth-2-0/authorization-code",
+        "https://docs.x.com/resources/fundamentals/rate-limits"
+      ],
+      "oauth_scopes_least_privilege": [
+        "tweet.write",
+        "tweet.read",
+        "users.read",
+        "media.write"
+      ],
+      "rate_or_quota": "OAuth 2.0 docs point to X rate-limits documentation; lookup limits differ by auth. Create-post media caps depend on posting user Premium status (default video attach 20 min / 8 GB). Commercial access tier required for uses beyond hobbyist/prototype per Developer Agreement Access Tiers language -- confirm current self-serve write entitlements with a developer account before enablement.",
+      "app_type_notes": "Official create-post and OAuth scopes documented. No Open Matchday X developer app created this spike; write access entitlement unverified against a live project.",
+      "blockers_to_enable": [
+        "X developer account + access tier that includes POST /2/tweets for our app type",
+        "OM-035 adapter + encrypted token store",
+        "AC-11.6 approval UI"
+      ]
+    },
+    {
+      "id": "bluesky",
+      "display_name": "Bluesky",
+      "verification": "policy_verified",
+      "runtime_enabled": false,
+      "use_cases": ["text_post", "image_post"],
+      "official_api": "AT Protocol com.atproto.repo.createRecord (app.bsky.feed.post) + blob upload",
+      "policy_urls": [
+        "https://atproto.com/specs/oauth",
+        "https://atproto.com/guides/writing-data",
+        "https://docs.bsky.app/docs/get-started",
+        "https://docs.bsky.app/docs/rate-limits",
+        "https://docs.bsky.app/docs/advanced-guides/oauth-client"
+      ],
+      "oauth_scopes_least_privilege": [
+        "atproto",
+        "transition:generic"
+      ],
+      "rate_or_quota": "Bluesky-hosted PDS repo ops: 5000 points/hour and 35000 points/day (CREATE=3, UPDATE=2, DELETE=1). Hosted PDS HTTP: 3000 requests / 5 minutes per IP (overall). Blob upload max 52428800 bytes (50 MiB) on hosted PDS.",
+      "app_type_notes": "Prefer atproto OAuth over legacy app passwords. Writing posts is a first-class documented API. No client credentials registered this spike.",
+      "blockers_to_enable": [
+        "OAuth client metadata / client_id hosting",
+        "OM-035 adapter + encrypted token store",
+        "AC-11.6 approval UI"
+      ]
+    },
+    {
+      "id": "twitch",
+      "display_name": "Twitch",
+      "verification": "unverified",
+      "runtime_enabled": false,
+      "use_cases": [],
+      "official_api": null,
+      "policy_urls": [],
+      "oauth_scopes_least_privilege": [],
+      "rate_or_quota": null,
+      "app_type_notes": "Not evaluated for matchday social card/clip publishing this spike. Live ingest is a separate destination concern from AC-11 social publishing.",
+      "blockers_to_enable": [
+        "Dedicated spike citing Helix/EventSub publish surfaces if product needs Twitch social posts"
+      ]
+    },
+    {
+      "id": "linkedin",
+      "display_name": "LinkedIn",
+      "verification": "unverified",
+      "runtime_enabled": false,
+      "use_cases": [],
+      "official_api": null,
+      "policy_urls": [],
+      "oauth_scopes_least_privilege": [],
+      "rate_or_quota": null,
+      "app_type_notes": "Not evaluated this spike.",
+      "blockers_to_enable": [
+        "Cite LinkedIn Marketing/Share API docs if product prioritizes LinkedIn"
+      ]
+    }
+  ]
+}

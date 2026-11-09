@@ -9,12 +9,20 @@ permissions:
   contents: read
 
 jobs:
-  bootstrap:
+  providers:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "24"
       - name: Verify bootstrap files
         run: |
           test -f README.md
           test -f LICENSE
+          test -f providers/registry.json
+          test -f scripts/check-providers.mjs
+      - name: Provider registry check
+        run: npm run check
