@@ -4,6 +4,7 @@
   "decision": "D8",
   "updated": "2026-11-11",
   "om035": "Official adapters + encrypted token store + AC-11.6 approval contract shipped; CI uses labeled MOCK transport. Live runtime_enabled remains false until owner OAuth credentials per provider.",
+  "om036": "Connected accounts + AC-11.1 credential planes (app_sign_in, social_connections, stream_destinations, contribution_service) shipped; UI shows provider/capabilities/status/revoke on social_connections only.",
   "rule": "Live publishing adapters may run only when verification=policy_verified AND runtime_enabled=true. Mock-mode publish is allowed for policy_verified adapters in CI. Unverified providers stay disabled.",
   "providers": [
     {

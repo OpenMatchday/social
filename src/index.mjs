@@ -43,3 +43,10 @@ export {
 export {
   listAdapterProviderIds,
 } from "./adapters/catalog.mjs"
+export {
+  CREDENTIAL_PLANES,
+  SOCIAL_CONNECTIONS_PLANE,
+  CredentialStoreRegistry,
+  ConnectedAccountsService,
+  loadConnectedAccountsContract,
+} from "./connected-accounts.mjs"

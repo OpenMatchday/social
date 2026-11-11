@@ -1,0 +1,38 @@
+{
+  "contract_id": "open-matchday.connected-accounts",
+  "contract_version": "0.1.0",
+  "description": "AC-11.1 / AC-11.2 connected-accounts UI contract. Social connections use a credential store separate from app sign-in, stream destinations, and the contribution service. Each connection row shows provider, capabilities, status, and revoke.",
+  "credential_planes": [
+    "app_sign_in",
+    "social_connections",
+    "stream_destinations",
+    "contribution_service"
+  ],
+  "rule": "Connected accounts only read and write the social_connections plane. Tokens never move across planes.",
+  "connection_row_required": [
+    "connection_id",
+    "provider_id",
+    "provider_display_name",
+    "account_label",
+    "capabilities",
+    "status",
+    "revoke_available"
+  ],
+  "status_values": [
+    "connected",
+    "connected_runtime_disabled",
+    "not_connected"
+  ],
+  "capabilities_source": "provider.use_cases union provider.oauth_scopes_least_privilege from D8 registry",
+  "rules": [
+    "Screen lists connections from the social_connections credential plane only",
+    "Revoke deletes the encrypted token for that connection_id and removes the row",
+    "Never display access_token, refresh_token, or passphrase material",
+    "Unverified providers cannot be connected for publishing",
+    "Publish still requires publish-approval.v0 (AC-11.6) and runtime_enabled for live send"
+  ],
+  "notes": [
+    "OM-036 ships the contract, CredentialStoreRegistry, ConnectedAccountsService, and app screen",
+    "Live OAuth authorization code flow remains blocked until owner credentials exist"
+  ]
+}

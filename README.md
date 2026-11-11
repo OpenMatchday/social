@@ -30,6 +30,13 @@ npm run export:demo
 
 Unverified providers (Twitch, LinkedIn) have no adapters and cannot publish.
 
+## Connected accounts (OM-036)
+
+- Credential planes (AC-11.1): `app_sign_in`, `social_connections`, `stream_destinations`, `contribution_service` — each gets its own `EncryptedTokenStore` and passphrase (`src/credential-planes.mjs`).
+- Connected accounts use **only** `social_connections` (`src/connected-accounts.mjs`).
+- UI contract: [`contracts/connected-accounts.v0.json`](contracts/connected-accounts.v0.json) — each row exposes provider, capabilities, status, revoke (AC-11.2).
+- Tokens never appear in describe/list payloads. Live OAuth authorize remains owner-gated (`runtime_enabled=false`).
+
 Spike notes: sibling `docs` repo `spikes/d8-social-providers.md`.
 
 ## License
