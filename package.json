@@ -5,8 +5,8 @@
   "type": "module",
   "description": "Social content preparation, export, and official-API publishing adapters",
   "scripts": {
-    "check": "node scripts/check-providers.mjs && node scripts/check-templates.mjs",
-    "test": "node --test test/templates.test.mjs test/drafts-export.test.mjs",
+    "check": "node scripts/check-providers.mjs && node scripts/check-templates.mjs && node scripts/check-adapters.mjs",
+    "test": "node --test test/templates.test.mjs test/drafts-export.test.mjs test/publish-adapters.test.mjs",
     "export:demo": "node scripts/export-drafts.mjs"
   },
   "engines": {

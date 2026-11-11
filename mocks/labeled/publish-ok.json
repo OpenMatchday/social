@@ -1,0 +1,7 @@
+{
+  "mock_label": "MOCK",
+  "live": false,
+  "status": "accepted",
+  "provider_post_id": "mock-publish-fixture",
+  "note": "Labeled CI fixture. Not a live provider response."
+}

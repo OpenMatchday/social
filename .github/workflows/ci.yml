@@ -26,12 +26,16 @@ jobs:
           test -f scripts/check-providers.mjs
           test -f scripts/check-templates.mjs
           test -f contracts/social-export.v0.json
+          test -f contracts/publish-approval.v0.json
+          test -f mocks/labeled/publish-ok.json
+          test -f src/publish.mjs
+          test -f src/tokens.mjs
           test -f templates/announcement.json
           test -f templates/lineup.json
           test -f templates/score.json
           test -f templates/result.json
           test -f templates/clip.json
-      - name: Provider and template checks
+      - name: Provider, template, and adapter checks
         run: npm run check
       - name: Tests
         run: npm test

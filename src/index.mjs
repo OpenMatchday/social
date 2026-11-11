@@ -16,3 +16,30 @@ export {
   loadTemplateById,
   loadTemplateByKind,
 } from "./templates.mjs"
+export {
+  assertPublishApproved,
+  buildPublishApproval,
+  loadPublishApprovalContract,
+} from "./approval.mjs"
+export {
+  assertLeastPrivilegeScopes,
+  defaultScopesFor,
+} from "./oauth.mjs"
+export { EncryptedTokenStore } from "./tokens.mjs"
+export {
+  listPublishAdapters,
+  publishDraft,
+} from "./publish.mjs"
+export {
+  getProvider,
+  listPolicyVerifiedProviders,
+  loadProviderRegistry,
+} from "./registry.mjs"
+export {
+  MOCK_LABEL,
+  assertLabeledMock,
+  createLabeledMockTransport,
+} from "./adapters/mock-transport.mjs"
+export {
+  listAdapterProviderIds,
+} from "./adapters/catalog.mjs"

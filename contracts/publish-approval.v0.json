@@ -1,0 +1,41 @@
+{
+  "contract_id": "open-matchday.publish-approval",
+  "contract_version": "0.1.0",
+  "description": "AC-11.6 explicit publish approval UI contract. Every publish shows account, content, and visibility and requires operator approval before send.",
+  "required_top_level": [
+    "contract_id",
+    "contract_version",
+    "account",
+    "content",
+    "visibility",
+    "approved",
+    "approved_at"
+  ],
+  "account_required": [
+    "provider_id",
+    "account_label",
+    "connection_id"
+  ],
+  "content_required": [
+    "draft_id",
+    "kind",
+    "caption"
+  ],
+  "visibility_values": [
+    "public",
+    "unlisted",
+    "private",
+    "followers"
+  ],
+  "rules": [
+    "approved must be the boolean true (operator action); false or missing rejects publish",
+    "approved_at must be an ISO-8601 timestamp set at approval time",
+    "account.provider_id must match a policy_verified registry provider",
+    "content must not include engagement metric fields (AC-11.7)",
+    "UI surfaces account, content summary, and visibility before the approve control"
+  ],
+  "notes": [
+    "OM-035 ships the contract and enforce gate; OM-036 Connected accounts screen uses this shape",
+    "Live network publish additionally requires runtime_enabled=true and encrypted tokens (AC-11.5)"
+  ]
+}

@@ -2,8 +2,9 @@
   "schema_version": 1,
   "spike": "OM-009",
   "decision": "D8",
-  "updated": "2026-11-09",
-  "rule": "Publishing adapters may run only when verification=policy_verified AND runtime_enabled=true. This spike keeps every runtime_enabled=false.",
+  "updated": "2026-11-11",
+  "om035": "Official adapters + encrypted token store + AC-11.6 approval contract shipped; CI uses labeled MOCK transport. Live runtime_enabled remains false until owner OAuth credentials per provider.",
+  "rule": "Live publishing adapters may run only when verification=policy_verified AND runtime_enabled=true. Mock-mode publish is allowed for policy_verified adapters in CI. Unverified providers stay disabled.",
   "providers": [
     {
       "id": "youtube",
@@ -26,8 +27,7 @@
       "app_type_notes": "Installed/mobile OAuth documented. Public apps using sensitive scopes require Google verification. No live publish exercised this spike.",
       "blockers_to_enable": [
         "Google Cloud project + OAuth client",
-        "OM-035 adapter + encrypted token store",
-        "AC-11.6 approval UI"
+        "Flip runtime_enabled after credentials; wire OM-036 Connected accounts UI to publish-approval.v0"
       ]
     },
     {
@@ -52,8 +52,7 @@
       "blockers_to_enable": [
         "Meta app review / Advanced Access as required",
         "Public media host or approved upload path",
-        "OM-035 adapter + encrypted token store",
-        "AC-11.6 approval UI"
+        "Flip runtime_enabled after credentials; wire OM-036 Connected accounts UI to publish-approval.v0"
       ]
     },
     {
@@ -79,8 +78,7 @@
       "app_type_notes": "Page access token from a person with CREATE_CONTENT task. publish_video may be required for some video flows per Pages manage docs.",
       "blockers_to_enable": [
         "Meta app + Page permissions review",
-        "OM-035 adapter + encrypted token store",
-        "AC-11.6 approval UI"
+        "Flip runtime_enabled after credentials; wire OM-036 Connected accounts UI to publish-approval.v0"
       ]
     },
     {
@@ -104,8 +102,7 @@
       "app_type_notes": "App must add Content Posting API, enable Direct Post, and obtain video.publish approval. Unaudited clients: posts restricted to private viewing until audit per Get Started note.",
       "blockers_to_enable": [
         "TikTok developer app + scope approval + audit",
-        "OM-035 adapter + encrypted token store",
-        "AC-11.6 approval UI"
+        "Flip runtime_enabled after credentials; wire OM-036 Connected accounts UI to publish-approval.v0"
       ]
     },
     {
@@ -132,8 +129,7 @@
       "app_type_notes": "Official create-post and OAuth scopes documented. No Open Matchday X developer app created this spike; write access entitlement unverified against a live project.",
       "blockers_to_enable": [
         "X developer account + access tier that includes POST /2/tweets for our app type",
-        "OM-035 adapter + encrypted token store",
-        "AC-11.6 approval UI"
+        "Flip runtime_enabled after credentials; wire OM-036 Connected accounts UI to publish-approval.v0"
       ]
     },
     {
@@ -158,8 +154,7 @@
       "app_type_notes": "Prefer atproto OAuth over legacy app passwords. Writing posts is a first-class documented API. No client credentials registered this spike.",
       "blockers_to_enable": [
         "OAuth client metadata / client_id hosting",
-        "OM-035 adapter + encrypted token store",
-        "AC-11.6 approval UI"
+        "Flip runtime_enabled after credentials; wire OM-036 Connected accounts UI to publish-approval.v0"
       ]
     },
     {

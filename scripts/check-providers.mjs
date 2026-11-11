@@ -90,8 +90,12 @@ for (const provider of registry.providers) {
   }
 }
 
+// OM-035: adapters exist with mocks + encrypted tokens + approval contract,
+// but live runtime_enabled stays false until owner OAuth credentials exist.
 if (enabledCount !== 0) {
-  console.error(`SPIKE_GUARD: expected zero runtime_enabled providers, found ${enabledCount}`)
+  console.error(
+    `ENABLEMENT_GUARD: expected zero runtime_enabled providers until owner credentials, found ${enabledCount}`
+  )
   process.exit(1)
 }
 

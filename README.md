@@ -18,15 +18,19 @@ npm test
 npm run export:demo
 ```
 
-## D8 provider registry
+## Official publishing adapters (OM-035)
 
-Machine-readable verification table: [`providers/registry.json`](providers/registry.json).
+- Registry: [`providers/registry.json`](providers/registry.json) (D8).
+- Adapters for every `policy_verified` provider: YouTube, Instagram, Facebook Pages, TikTok, X, Bluesky.
+- Least-privilege OAuth scopes only (`src/oauth.mjs`).
+- Encrypted token store: AES-256-GCM + scrypt (`src/tokens.mjs`; Node.js crypto).
+- Explicit approval contract: [`contracts/publish-approval.v0.json`](contracts/publish-approval.v0.json) (account, content, visibility; `approved=true` required).
+- CI uses **labeled** `MOCK` transport (`mocks/labeled/`, `mock_label=MOCK`, `live=false`). No live network publish in CI.
+- Every provider stays `runtime_enabled=false` until owner OAuth credentials exist. Live mode has no default HTTP client.
 
-- Publishing uses only official APIs marked `policy_verified` (see spike OM-009 / D8).
-- Every provider stays `runtime_enabled=false` until OM-035 implements adapters with least-privilege OAuth, encrypted tokens, and explicit publish approval (AC-11.6).
-- Unverified providers cannot be enabled.
+Unverified providers (Twitch, LinkedIn) have no adapters and cannot publish.
 
-Spike notes live in the sibling `docs` repo: `spikes/d8-social-providers.md`.
+Spike notes: sibling `docs` repo `spikes/d8-social-providers.md`.
 
 ## License
 
