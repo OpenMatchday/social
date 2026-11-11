@@ -1,0 +1,16 @@
+{
+  "template_id": "tmpl-announcement",
+  "kind": "announcement",
+  "title": "Announcement",
+  "aspects": ["16:9", "9:16", "1:1"],
+  "graphics_kind": "social_cards",
+  "slots": [
+    { "slot_id": "headline", "label": "Headline", "max_length": 80, "required": true },
+    { "slot_id": "body", "label": "Body", "max_length": 280, "required": false }
+  ],
+  "card_map": {
+    "title": "headline",
+    "subtitle": "body"
+  },
+  "caption_template": "{{headline}}\n\n{{body}}"
+}

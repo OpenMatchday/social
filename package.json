@@ -1,10 +1,15 @@
 {
   "name": "open-matchday-social",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "description": "Social content preparation, export, and official-API publishing adapters",
   "scripts": {
-    "check": "node scripts/check-providers.mjs"
+    "check": "node scripts/check-providers.mjs && node scripts/check-templates.mjs",
+    "test": "node --test test/templates.test.mjs test/drafts-export.test.mjs",
+    "export:demo": "node scripts/export-drafts.mjs"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

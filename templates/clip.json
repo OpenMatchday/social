@@ -1,0 +1,17 @@
+{
+  "template_id": "tmpl-clip",
+  "kind": "clip",
+  "title": "Clip",
+  "aspects": ["16:9", "9:16", "1:1"],
+  "graphics_kind": "social_cards",
+  "slots": [
+    { "slot_id": "clip_title", "label": "Clip title", "max_length": 80, "required": true },
+    { "slot_id": "timecode", "label": "Timecode", "max_length": 32, "required": false },
+    { "slot_id": "local_media_path", "label": "Local media path", "max_length": 512, "required": false }
+  ],
+  "card_map": {
+    "title": "clip_title",
+    "subtitle": "timecode"
+  },
+  "caption_template": "{{clip_title}}\n{{timecode}}"
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openmatchday.local/social/schemas/v0/template.json",
+  "title": "Open Matchday social template v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "template_id",
+    "kind",
+    "title",
+    "aspects",
+    "graphics_kind",
+    "slots",
+    "card_map",
+    "caption_template"
+  ],
+  "properties": {
+    "template_id": { "type": "string", "minLength": 1 },
+    "kind": {
+      "type": "string",
+      "enum": ["announcement", "lineup", "score", "result", "clip"]
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "aspects": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "enum": ["16:9", "9:16", "1:1"] }
+    },
+    "graphics_kind": { "type": "string", "const": "social_cards" },
+    "slots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slot_id", "label", "max_length", "required"],
+        "properties": {
+          "slot_id": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 },
+          "max_length": { "type": "integer", "minimum": 1 },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "card_map": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 },
+      "required": ["title", "subtitle"]
+    },
+    "caption_template": { "type": "string", "minLength": 1 }
+  }
+}

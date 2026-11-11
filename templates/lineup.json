@@ -1,0 +1,16 @@
+{
+  "template_id": "tmpl-lineup",
+  "kind": "lineup",
+  "title": "Lineup",
+  "aspects": ["16:9", "9:16", "1:1"],
+  "graphics_kind": "social_cards",
+  "slots": [
+    { "slot_id": "team_name", "label": "Team", "max_length": 60, "required": true },
+    { "slot_id": "starters", "label": "Starters", "max_length": 400, "required": true }
+  ],
+  "card_map": {
+    "title": "team_name",
+    "subtitle": "starters"
+  },
+  "caption_template": "Lineup — {{team_name}}\n{{starters}}"
+}

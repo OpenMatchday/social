@@ -1,0 +1,16 @@
+{
+  "template_id": "tmpl-score",
+  "kind": "score",
+  "title": "Score",
+  "aspects": ["16:9", "9:16", "1:1"],
+  "graphics_kind": "social_cards",
+  "slots": [
+    { "slot_id": "matchup", "label": "Matchup", "max_length": 80, "required": true },
+    { "slot_id": "scoreline", "label": "Scoreline", "max_length": 40, "required": true }
+  ],
+  "card_map": {
+    "title": "matchup",
+    "subtitle": "scoreline"
+  },
+  "caption_template": "{{matchup}}\n{{scoreline}}"
+}

@@ -1,0 +1,17 @@
+{
+  "template_id": "tmpl-result",
+  "kind": "result",
+  "title": "Result",
+  "aspects": ["16:9", "9:16", "1:1"],
+  "graphics_kind": "social_cards",
+  "slots": [
+    { "slot_id": "matchup", "label": "Matchup", "max_length": 80, "required": true },
+    { "slot_id": "final_score", "label": "Final score", "max_length": 40, "required": true },
+    { "slot_id": "note", "label": "Note", "max_length": 160, "required": false }
+  ],
+  "card_map": {
+    "title": "matchup",
+    "subtitle": "final_score"
+  },
+  "caption_template": "Final — {{matchup}}\n{{final_score}}\n{{note}}"
+}
